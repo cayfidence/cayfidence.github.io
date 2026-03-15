@@ -1,30 +1,30 @@
-const projects=[
+const projects = [
 
 {
 icon:"🧮",
 name:"Math",
 desc:"Fun math practice",
-url:"/math"
+url:"/math/"
 },
 
 {
 icon:"📚",
 name:"Reading 100",
 desc:"100 story books",
-url:"/reading100"
+url:"/reading100/"
 },
 
 {
 icon:"🔤",
 name:"Phonics",
-desc:"Sound practice",
+desc:"Sound and spelling",
 url:"#"
 },
 
 {
 icon:"✏️",
 name:"Spelling",
-desc:"Spelling training",
+desc:"Spelling practice",
 url:"#"
 },
 
@@ -37,8 +37,7 @@ url:"#"
 
 ];
 
-
-const container=document.getElementById("projects");
+const container = document.getElementById("projects");
 
 function render(list){
 
@@ -58,13 +57,9 @@ card.innerHTML=`
 
 <p>${p.desc}</p>
 
+<a class="openBtn" href="${p.url}">Open →</a>
+
 `;
-
-card.onclick=()=>{
-
-window.location.href=p.url;
-
-};
 
 container.appendChild(card);
 
@@ -76,13 +71,21 @@ render(projects);
 
 
 
-document.getElementById("search").oninput=(e)=>{
+/* search */
+
+const searchBox=document.getElementById("search");
+
+if(searchBox){
+
+searchBox.oninput=(e)=>{
 
 const q=e.target.value.toLowerCase();
 
 const filtered=projects.filter(p=>
 
-p.name.toLowerCase().includes(q)
+p.name.toLowerCase().includes(q) ||
+
+p.desc.toLowerCase().includes(q)
 
 );
 
@@ -90,7 +93,11 @@ render(filtered);
 
 };
 
+}
 
+
+
+/* dark mode */
 
 const toggle=document.getElementById("themeToggle");
 
@@ -100,6 +107,8 @@ document.body.classList.add("dark");
 
 }
 
+if(toggle){
+
 toggle.onclick=()=>{
 
 document.body.classList.toggle("dark");
@@ -107,3 +116,5 @@ document.body.classList.toggle("dark");
 localStorage.theme=document.body.classList.contains("dark")?"dark":"light";
 
 };
+
+}
