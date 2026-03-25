@@ -32,7 +32,7 @@ url:"#"
 icon:"🎮",
 name:"Learning Games",
 desc:"Educational games",
-url:"#"
+url:"/learninggame/"
 }
 
 ];
